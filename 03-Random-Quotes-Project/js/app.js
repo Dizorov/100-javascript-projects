@@ -32,13 +32,21 @@
     }
   ];
 
-  const btn = document.getElementById("generate-btn");
+  const button = document.querySelector('button')
+  const quoteElem = document.querySelector('#quote')
+  const authorElem = document.querySelector('.quote-author')
 
-  btn.addEventListener("click", function() {
-    let random = Math.floor(Math.random() * quotes.length);
-    console.log(random);
+  const getQuote = (quotes) => {
+    const quoteIndex = Math.floor(Math.random() * quotes.length)
+    return quotes[quoteIndex]
+  }
 
-    document.getElementById("quote").textContent = quotes[random].quote;
-    document.querySelector(".author").textContent = quotes[random].author;
-  });
+  const changeQuote = () => {
+    const { quote, author } = getQuote(quotes)
+    quoteElem.textContent = quote
+    authorElem.textContent = author
+  }
+
+  button.addEventListener('click', changeQuote)
+
 })();
